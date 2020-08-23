@@ -3,15 +3,29 @@
 // session persistence, api calls, and more.
 const Alexa = require('ask-sdk-core');
 
+//const appboy = require('@braze/web-sdk'); 
+// or if you prefer using import:
+// import appboy from '@braze/web-sdk';
+
+const randomLines = [
+    'I\'m going to make him an offer he can\'t refuse',
+    'I love the smell of napalm in the morning',
+    'Houston, we have a problem',
+  ];
+
+// appboy.initialize('YOUR-API-KEY-HERE', { baseUrl: 'YOUR-SDK-ENDPOINT' });
+// appboy.display.automaticallyShowNewInAppMessages();
+// appboy.openSession();  
+
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome, you can say Hello or Help. Which would you like to try?';
+        let speechOutput = getRandomPhrase(randomLines);
         return handlerInput.responseBuilder
-            .speak(speakOutput)
-            .reprompt(speakOutput)
+            .speak(speechOutput)
+            .reprompt(speechOutput)
             .getResponse();
     }
 };
@@ -101,6 +115,11 @@ const ErrorHandler = {
             .getResponse();
     }
 };
+
+function getRandomPhrase(array) {
+    const i = Math.floor(Math.random() * array.length);
+    return (array[i]);
+  }
 
 // The SkillBuilder acts as the entry point for your skill, routing all request and response
 // payloads to the handlers above. Make sure any new handlers or interceptors you've
