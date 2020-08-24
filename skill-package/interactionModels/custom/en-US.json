@@ -16,6 +16,14 @@
                     "samples": []
                 },
                 {
+                    "name": "CardIntent",
+                    "slots": [],
+                    "samples": [
+                        "give me a card",
+                        "give me a card sample"
+                    ]
+                },
+                {
                     "name": "HelloWorldIntent",
                     "slots": [],
                     "samples": [

@@ -29,6 +29,23 @@ const LaunchRequestHandler = {
             .getResponse();
     }
 };
+
+const CardIntentHandler = {
+    canHandle(handlerInput) {
+      return handlerInput.requestEnvelope.request.type === 'IntentRequest' 
+            && handlerInput.requestEnvelope.request.intent.name === 'CardIntent';
+    },
+    handle(handlerInput) {
+      const speechText = "Please check the screen of your Alexa device for more information"
+      
+      return handlerInput.responseBuilder
+        .speak(speechText)
+        .withSimpleCard('This is a sample card')
+        .reprompt('What would you like to do?')
+        .getResponse();
+    }
+};
+  
 const HelloWorldIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -127,6 +144,7 @@ function getRandomPhrase(array) {
 exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
+        CardIntentHandler,
         HelloWorldIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
