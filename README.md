@@ -1,0 +1,1 @@
+Basic POC using the steps in https://developer.amazon.com/en-US/docs/alexa/smapi/ask-cli-intro.html
